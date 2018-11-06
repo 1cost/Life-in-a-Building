@@ -2,6 +2,11 @@
 <html lang="en">
 
   <head>
+    <script>
+    var cams = ["7th Wing Gym",
+                    "MacDonough Gym",
+                    "Barbershop"];
+    </script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +20,7 @@
 
     <!-- src: https://thenounproject.com/term/big-brother/38042/ -->
     <link rel="icon" href="imgs/surv_favicon.png">
-    
+
     <!-- Custom styles for this template -->
     <link href="css/1-col-portfolio.css" rel="stylesheet">
   </head>
@@ -58,20 +63,53 @@
       <hr />
 
       <!-- Project One -->
+      <div class="container" style="text-align:center;">
       <div class="row">
         <div class="col-md-6">
-          <a href="#">
-            <!-- IPS
-            http://10.33.118.21 -> src = blob:http://10.16.22.12/67bf51e8-1299-4bac-9969-d60cd8e25a33
-          -->
-            <iframe src ="http://10.17.166.21/" width="75%" height="350"></iframe>
-          </a>
-        </div>
-        <div class="col-md-6">
-          <a href=#><iframe src="http://10.16.22.12/#view" width="75%" height="350"></iframe></a>
+          <a href=#><iframe src="http://10.33.118.22/#view" width="75%" height="350" id='frame_one_if'></iframe></a>
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="frame_one" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            MacDonough Gym
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#" onclick="changeFrame('7th Wing Gym', 'http://10.17.166.21/', 'frame_one')">7th Wing Gym</a>
+              <a class="dropdown-item" href="#" onclick="changeFrame('MacDonough Gym', 'http://10.33.118.22/', 'frame_one')">MacDonough Gym</a>
+              <a class="dropdown-item" href="#" onclick="changeFrame('Barbershop', 'http://10.16.22.12/', 'frame_one')">Barbershop</a>
+            </div>
+          </div>
+                </div>
+<div class="col-md-6">
+  <a href=#><iframe src="http://10.16.22.12/#view" width="75%" height="350" id='frame_two_if'></iframe></a>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="frame_two" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Barbershop
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#" onclick="changeFrame('7th Wing Gym', 'http://10.17.166.21/', 'frame_two')">7th Wing Gym</a>
+      <a class="dropdown-item" href="#" onclick="changeFrame('MacDonough Gym', 'http://10.33.118.22/', 'frame_two')">MacDonough Gym</a>
+      <a class="dropdown-item" href="#" onclick="changeFrame('Barbershop', 'http://10.16.22.12/', 'frame_two')">Barbershop</a>
+    </div>
+  </div>
         </div>
       </div>
+  </div>
       <!-- /.row -->
+
+      <script>
+      function changeFrame(title, ip, frame)
+      {
+        if(!cams.includes(title))
+        {
+          return;
+        }
+        var butter = document.getElementById(frame);
+        butter.innerHTML = title;
+        frame += "_if";
+
+        var butter = document.getElementById(frame);
+        butter.src = ip;
+      }
+      </script>
 
       <hr>
       <!-- AVAILABLE FOR EASY EXTENSION -->
@@ -81,7 +119,9 @@
             <img class="img-fluid rounded mb-3 mb-md-0" src="imgs/compete-traffic.png" alt="">
           </a>
         </div>
+
         <div class="col-md-5">
+        <div class="container">
           <h3>Live Data Analytics</h3>
           <p><ul>
             <li>
@@ -92,9 +132,12 @@
             </li>
           </ul>
         </p>
-          <a class="btn btn-primary" href="#">View Project</a>
+        <div class="row text-center">
+            <a class="btn btn-primary" href="#">View Project</a>
         </div>
       </div>
+      </div>
+
       <hr />
       <!-- /.row -->
 
