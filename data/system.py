@@ -1,4 +1,4 @@
-#!/usrbin/python
+#!/usr/bin/python
 
 import sys
 import argparse
@@ -12,7 +12,7 @@ def getCurTime():
   h = str(t.tm_hour)
   m = str(t.tm_min)
   s = str(t.tm_sec)
-  return str(h+":"+m+":"+s)
+  return str(h+"_"+m+"_"+s)
 
 def collectData():
   while True:
@@ -42,3 +42,5 @@ if args.cname:
   print args.cname[0]
 elif args.sname:
   print args.sname[0]
+
+collectData()
