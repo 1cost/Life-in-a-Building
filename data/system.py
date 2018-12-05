@@ -10,7 +10,6 @@ import numpy as np
 import cv2
 
 from ips import *
-#from videos import *
 
 loop = True
 def signalHandler(signal,frame):
@@ -28,38 +27,48 @@ def getCurTime():
   s = s.rjust(2,"0")
   return str(h+"_"+m+"_"+s)
 
+# Collect and store a frame about every second
+# Access the image at the ip address given 
+# Write metadata about the collection to meta.txt
 def collectData(loc, ip):
-  signal.signal(signal.SIGINT, signalHandler)
-  directory = getCurTime()
-  os.mkdir(directory)
+  signal.signal(signal.SIGINT, signalHandler)   # Edit ctrl-c to end the loop
+  directory = getCurTime()                
+  os.mkdir(directory)                           # Make directory named the current time
   print "Data stored in directory:", directory
 
   count = 0
-  metafile = open(str(directory+"/meta.txt"),"w") 
+  metafile = open(str(directory+"/meta.txt"),"w")   # Open file and write metadata
   metafile.write("Metadata for frame collection\n")
   metafile.write("Location: "+str(loc)+"\n")
   metafile.write("Start Time: "+str(directory)+"\n")
 
+  # Run until ctrl-c (SIGINT)
   while loop:
     try:
+      # Access the image and convert bytes to numpy array
       req = urllib.urlopen("http://"+ip+"/axis-cgi/jpg/image.cgi")
       arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
-      print(arr.shape)
       img = cv2.imdecode(arr, -1)
 
       t = getCurTime()+".jpg"
       print t
+
+      # Store the image in hour_min_sec.jpg format
       cv2.imwrite(str(directory+"/"+t),img)
+
       count+=1
     except:
       print "Error: Could not read in data. Attempting to reconnect."
       exit(1)
 
-    time.sleep(0.8)
+    time.sleep(0.8) # Sleep for almost a second until next frame
 
+  # Write the number of images to meta.txt and close the file
   metafile.write("Total Frames: "+str(count))
   metafile.close()
 
+def funnelData(queue):
+  print "queue"
 
 
 ##### Main #####
