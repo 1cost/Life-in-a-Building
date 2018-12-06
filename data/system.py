@@ -79,7 +79,7 @@ def reader(queue):
   i = 1
   while loop:
     img = queue.get()
-    cv2.imwrite("pic"+i+".jpg",img)
+    cv2.imwrite("pic"+str(i)+".jpg",img)
     i+=1
     time.sleep(0.8)
 
