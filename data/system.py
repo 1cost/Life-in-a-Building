@@ -53,7 +53,7 @@ def collectData(loc, ip):
   while loop:
     try:
       img = getImg(ip)
-      t = getCurTime()+".jpg"
+      t = "pic"+str(count)+".jpg"
       print t
 
       # Store the image in hour_min_sec.jpg format
@@ -66,7 +66,9 @@ def collectData(loc, ip):
     time.sleep(0.8) # Sleep for almost a second until next frame
 
   # Write the number of images to meta.txt and close the file
-  metafile.write("Total Frames: "+str(count))
+  metafile.write("Total Frames: "+str(count)+"\n")
+  etime = getCurTime()
+  metafile.write("End Time: "+str(etime)+"\n")
   metafile.close()
 
 def writer(queue):

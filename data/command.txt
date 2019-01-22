@@ -1,0 +1,1 @@
+ffmpeg -f image2 -r 1/1 -i ./pic%01d.jpg -vcodec mpeg4 -y ./video.mp4
