@@ -4,7 +4,7 @@
   <head>
     <script>
     var cams = ["7th Wing Gym",
-                    "MacDonough Gym",
+                    "MacDonough Gym 1",
                     "Barbershop"];
     </script>
 
@@ -52,6 +52,36 @@
       </div>
     </nav>
 
+          <script>
+      function getIP(camera, element) {
+        var data = new FormData();
+        data.append('ipaddr', camera);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var ipaddr = xhttp.responseText;
+            var butter = document.getElementById(element);
+            butter.src = "http://"+(ipaddr.toString()).trim()+"/#view";
+          }
+        };
+        xhttp.open("POST", "scripts/getip.php", true);
+        xhttp.send(data);
+        return false;
+      }
+
+      function changeFrame(title, frame)
+      {
+        if(!cams.includes(title))
+        {
+          return;
+        }
+        var butter = document.getElementById(frame);
+        butter.innerHTML = title;
+        frame += "_if";
+        getIP(title, frame);
+      }
+      </script>
+
     <!-- Page Content -->
     <div class="container">
 
@@ -66,50 +96,39 @@
       <div class="container" style="text-align:center;">
       <div class="row">
         <div class="col-md-6">
-          <a href=#><iframe src="http://10.33.118.22/#view" width="75%" height="350" id='frame_one_if'></iframe></a>
+          <a href=#><iframe src="" width="75%" height="350" id='frame_one_if'></iframe></a>
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" id="frame_one" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             MacDonough Gym
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#" onclick="changeFrame('7th Wing Gym', '---', 'frame_one')">7th Wing Gym</a>
-              <a class="dropdown-item" href="#" onclick="changeFrame('MacDonough Gym', '---', 'frame_one')">MacDonough Gym</a>
-              <a class="dropdown-item" href="#" onclick="changeFrame('Barbershop', '---', 'frame_one')">Barbershop</a>
-            </div>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#" onclick="changeFrame('7th Wing Gym', 'frame_one')">7th Wing Gym</a>
+      <a class="dropdown-item" href="#" onclick="changeFrame('MacDonough Gym 1', 'frame_one')">MacDonough Gym</a>
+      <a class="dropdown-item" href="#" onclick="changeFrame('Barbershop', 'frame_one')">Barbershop</a>
+    </div>
           </div>
                 </div>
 <div class="col-md-6">
-  <a href=#><iframe src="http://10.16.22.12/#view" width="75%" height="350" id='frame_two_if'></iframe></a>
+  <a href=#><iframe src ="" width="75%" height="350" id='frame_two_if'></iframe></a>
+  <script>
+    getIP('MacDonough Gym 1', 'frame_one_if')
+    getIP('Barbershop', 'frame_two_if');
+  </script>
   <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle" type="button" id="frame_two" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Barbershop
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#" onclick="changeFrame('7th Wing Gym', '---', 'frame_two')">7th Wing Gym</a>
-      <a class="dropdown-item" href="#" onclick="changeFrame('MacDonough Gym', '---', 'frame_two')">MacDonough Gym</a>
-      <a class="dropdown-item" href="#" onclick="changeFrame('Barbershop', '---', 'frame_two')">Barbershop</a>
+      <a class="dropdown-item" href="#" onclick="changeFrame('7th Wing Gym', 'frame_two')">7th Wing Gym</a>
+      <a class="dropdown-item" href="#" onclick="changeFrame('MacDonough Gym 1', 'frame_two')">MacDonough Gym</a>
+      <a class="dropdown-item" href="#" onclick="changeFrame('Barbershop', 'frame_two')">Barbershop</a>
     </div>
   </div>
         </div>
       </div>
   </div>
+ 
       <!-- /.row -->
-
-      <script>
-      function changeFrame(title, ip, frame)
-      {
-        if(!cams.includes(title))
-        {
-          return;
-        }
-        var butter = document.getElementById(frame);
-        butter.innerHTML = title;
-        frame += "_if";
-
-        var butter = document.getElementById(frame);
-        butter.src = ip;
-      }
-      </script>
 
       <hr>
       <!-- AVAILABLE FOR EASY EXTENSION -->
@@ -122,19 +141,7 @@
 
         <div class="col-md-5">
         <div class="container">
-          <h3>Live Data Analytics</h3>
-          <p><ul>
-            <li>
-              Answer pattern of life questions using analysis of camera footage
-            </li>
-            <li>
-              Algorithm for detecting and differentiating objects and people in the footage
-            </li>
-          </ul>
-        </p>
-        <div class="row text-center">
-            <a class="btn btn-primary" href="#">View Project</a>
-        </div>
+
       </div>
       </div>
 
@@ -172,9 +179,7 @@
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
-      <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Life in a Building 2018-2019</p>
-      </div>
       <!-- /.container -->
     </footer>
 
