@@ -75,8 +75,8 @@ def writer(queue):
   while loop:
     img = getImg(ips[index][1])
     try:  
-      queue.put(img)
-    except queue.Full:
+      queue.put_nowait(img)
+    except:
       print "Queue is full! Dumping old data."
       for _ in range(10):
         queue.get()
