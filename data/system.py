@@ -74,7 +74,14 @@ def collectData(loc, ip):
 def writer(queue):
   while loop:
     img = getImg(ips[index][1])
-    queue.put(img)
+    try:  
+      queue.put(img)
+    except queue.Full:
+      print "Queue is full! Dumping old data."
+      for _ in range(10):
+        queue.get()
+      queue.put(img)
+
     time.sleep(0.8)
 
 def reader(queue):
@@ -103,7 +110,7 @@ if args.cname:
 
 elif args.sname:
   index = ipSwitch(args.sname[0])
-  q = Queue()
+  q = Queue(10)
 
   p = Process(target=reader, args=(q,))
   signal.signal(signal.SIGINT, signalHandler)   # Edit ctrl-c to end the loop
