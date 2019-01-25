@@ -53,7 +53,7 @@ def collectData(loc, ip):
   while loop:
     try:
       img = getImg(ip)
-      t = getCurTime()+".jpg"
+      t = "pic"+str(count)+".jpg"
       print t
 
       # Store the image in hour_min_sec.jpg format
@@ -66,13 +66,22 @@ def collectData(loc, ip):
     time.sleep(0.8) # Sleep for almost a second until next frame
 
   # Write the number of images to meta.txt and close the file
-  metafile.write("Total Frames: "+str(count))
+  metafile.write("Total Frames: "+str(count)+"\n")
+  etime = getCurTime()
+  metafile.write("End Time: "+str(etime)+"\n")
   metafile.close()
 
 def writer(queue):
   while loop:
     img = getImg(ips[index][1])
-    queue.put(img)
+    try:  
+      queue.put_nowait(img)
+    except:
+      print "Queue is full! Dumping old data."
+      for _ in range(10):
+        queue.get()
+      queue.put(img)
+
     time.sleep(0.8)
 
 def reader(queue):
@@ -101,7 +110,7 @@ if args.cname:
 
 elif args.sname:
   index = ipSwitch(args.sname[0])
-  q = Queue()
+  q = Queue(10)
 
   p = Process(target=reader, args=(q,))
   signal.signal(signal.SIGINT, signalHandler)   # Edit ctrl-c to end the loop
