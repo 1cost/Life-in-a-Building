@@ -12,6 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script type="text/JavaScript" src ="js/functions.js"></script>
+    <script src ="js/Chart.js/chart.min.js"></script>
 
     <title>Live feeds</title>
 
@@ -45,7 +47,7 @@
               <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Data Management</a>
+              <a class="nav-link" href="dat.php">Data Management</a>
             </li>
           </ul>
         </div>
@@ -127,25 +129,56 @@
         </div>
       </div>
   </div>
+  <br>
+  <hr>
  
       <!-- /.row -->
 
-      <hr>
       <!-- AVAILABLE FOR EASY EXTENSION -->
       <div class="row">
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="imgs/compete-traffic.png" alt="">
-          </a>
+        <div class="col-md-10" style="display:inline-block">
+            <canvas id="line-chart" width="800" height="450" style="text-align:center;"></canvas>
         </div>
-
-        <div class="col-md-5">
-        <div class="container">
-
       </div>
-      </div>
-
-      <hr />
+          <script type="text/javascript">
+            new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: [5,10,15,20,25,30],
+    datasets: [{ 
+        data: [0,0,10,25,20,19,18,25,24,23,12,21],
+        label: "Mac D",
+        borderColor: "#3e95cd",
+        fill: false
+      }, { 
+        data: [2,5,7,1,2,5,6,10,19,20,18,18],
+        label: "Barbershop",
+        borderColor: "#8e5ea2",
+        fill: false
+      }, { 
+        data: [10,9,4,5,6,7,8,11,3,5,3,9],
+        label: "7th Wing",
+        borderColor: "#3cba9f",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Trends of Persons per Space'
+    },
+    layout: {
+      padding: {
+          left: 200,
+          right: 0,
+          top: 0,
+          bottom: 0
+      }
+    }
+  }
+});
+          </script>
       <!-- /.row -->
 
       <!-- Pagination: Implement when more pages needed (if)
@@ -173,10 +206,8 @@
         </li>
       </ul>
     -->
-
-    </div>
     <!-- /.container -->
-
+    <br> <!-- used for cleanliness -->
     <!-- Footer -->
     <footer class="py-5 bg-dark">
         <p class="m-0 text-center text-white">Copyright &copy; Life in a Building 2018-2019</p>

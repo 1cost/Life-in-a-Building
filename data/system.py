@@ -96,6 +96,27 @@ def collectData(loc, ip):
   metafile.write("End Time: "+str(etime)+"\n")
   metafile.close()
 
+def writer(queue):
+  while loop:
+    img = getImg(ips[index][1])
+    try:  
+      queue.put_nowait(img)
+    except:
+      print "Queue is full! Dumping old data."
+      for _ in range(10):
+        queue.get()
+      queue.put(img)
+
+    time.sleep(0.8)
+
+def reader(queue):
+  i = 1
+  while loop:
+    img = queue.get()
+    cv2.imwrite("pic"+str(i)+".jpg",img)
+    i+=1
+    time.sleep(0.8)
+
 ##### Main #####
 parser = argparse.ArgumentParser(description="Choose the operations to perform.")
 parser.add_argument("password", help="Insert database password")

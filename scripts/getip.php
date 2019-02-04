@@ -1,7 +1,7 @@
   <?php
   if (!defined('WEB_PATH')) { define('WEB_PATH', 'http://midn.cs.usna.edu/~m195466/IT452/Error_Visualization/web/');}
-  require_once("scripts/mysql.inc.php");
-  require_once("functions.php");
+  require_once("mysql.inc.php");
+  require_once("../php/functions.php");
   $db = new myConnectDB();
 
   if (mysqli_connect_errno()) {
