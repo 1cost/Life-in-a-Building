@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+# Import outside libraries for the system to run
 import os
 import sys
 import signal
@@ -10,6 +11,7 @@ import numpy as np
 import cv2
 from multiprocessing import Process, Queue
 
+# Import functions
 from ips import *
 
 loop = True
@@ -18,6 +20,7 @@ def signalHandler(signal,frame):
   print "Exiting Loop"
   loop = False
 
+# Return the current time
 def getCurTime():
   t = time.localtime()
   h = str(t.tm_hour)
@@ -28,12 +31,34 @@ def getCurTime():
   s = s.rjust(2,"0")
   return str(h+"_"+m+"_"+s)
 
+# Return an image from a given ip address
 def getImg(ip):
   # Access the image and convert bytes to numpy array
   req = urllib.urlopen("http://"+ip+"/axis-cgi/jpg/image.cgi")
   arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
   img = cv2.imdecode(arr, -1)
   return img
+
+def writer(queue):
+  while loop:
+    img = getImg(ips[index][1])
+    try:  
+      queue.put(img)
+    except queue.Full:
+      print "Queue is full! Dumping old data."
+      for _ in range(10):
+        queue.get()
+      queue.put(img)
+
+    time.sleep(0.8)
+
+def reader(queue):
+  i = 1
+  while loop:
+    img = queue.get()
+    cv2.imwrite("pic"+str(i)+".jpg",img)
+    i+=1
+    time.sleep(0.8)
 
 # Collect and store a frame about every second
 # Access the image at the ip address given 
@@ -71,29 +96,7 @@ def collectData(loc, ip):
   metafile.write("End Time: "+str(etime)+"\n")
   metafile.close()
 
-def writer(queue):
-  while loop:
-    img = getImg(ips[index][1])
-    try:  
-      queue.put(img)
-    except queue.Full:
-      print "Queue is full! Dumping old data."
-      for _ in range(10):
-        queue.get()
-      queue.put(img)
-
-    time.sleep(0.8)
-
-def reader(queue):
-  i = 1
-  while loop:
-    img = queue.get()
-    cv2.imwrite("pic"+str(i)+".jpg",img)
-    i+=1
-    time.sleep(0.8)
-
 ##### Main #####
-feed = ""
 parser = argparse.ArgumentParser(description="Choose the operations to perform.")
 parser.add_argument("password", help="Insert database password")
 parser.add_argument("-c","--collect", nargs=1, dest="cname", help="Collect frames")
@@ -103,6 +106,7 @@ args = parser.parse_args()
 
 ips = storeIPs(args.password)
 
+# Run the data collection if -c or --collect is provided
 if args.cname:
   index = ipSwitch(args.cname[0])
   signal.signal(signal.SIGINT, signalHandler)   # Edit ctrl-c to end the loop
