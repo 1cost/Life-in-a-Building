@@ -9,6 +9,7 @@ import time
 import urllib
 import numpy as np
 import cv2
+import random
 from multiprocessing import Process, Queue
 
 # Import functions
@@ -23,13 +24,8 @@ def signalHandler(signal,frame):
 # Return the current time
 def getCurTime():
   t = time.localtime()
-  h = str(t.tm_hour)
-  h = h.rjust(2,"0")
-  m = str(t.tm_min)
-  m = m.rjust(2,"0")
-  s = str(t.tm_sec)
-  s = s.rjust(2,"0")
-  return str(h+"_"+m+"_"+s)
+  s = time.strftime("%d %b %y %H:%M:%S", t)
+  return s
 
 # Return an image from a given ip address
 def getImg(ip):
@@ -39,9 +35,9 @@ def getImg(ip):
   img = cv2.imdecode(arr, -1)
   return img
 
-def writer(queue):
+def writer(queue, ip):
+  img = getImg(ip)
   while loop:
-    img = getImg(ips[index][1])
     try:  
       queue.put(img)
     except queue.Full:
@@ -50,21 +46,27 @@ def writer(queue):
         queue.get()
       queue.put(img)
 
-    time.sleep(0.8)
+    prev_img = img
+    while True:
+      img = getImg(ip)
+      if (img == prev_img).all():
+        continue
+      else:
+        break
 
 def reader(queue):
-  i = 1
+  i = 0
   while loop:
     img = queue.get()
     cv2.imwrite("pic"+str(i)+".jpg",img)
+    print "pic"+str(i)+".jpg"
     i+=1
     time.sleep(0.8)
 
 # Collect and store a frame about every second
 # Access the image at the ip address given 
 # Write metadata about the collection to meta.txt
-def collectData(loc, ip):
-  directory = getCurTime()                
+def collectData(loc, ip, directory):
   os.mkdir(directory)                           # Make directory named the current time
   print "Data stored in directory:", directory
 
@@ -72,56 +74,41 @@ def collectData(loc, ip):
   metafile = open(str(directory+"/meta.txt"),"w")   # Open file and write metadata
   metafile.write("Metadata for frame collection\n")
   metafile.write("Location: "+str(loc)+"\n")
-  metafile.write("Start Time: "+str(directory)+"\n")
+  metafile.write("Start Time: "+str(getCurTime())+"\n")
 
   # Run until ctrl-c (SIGINT)
+  img = getImg(ip)
   while loop:
     try:
-      img = getImg(ip)
       t = "pic"+str(count)+".jpg"
       print t
 
-      # Store the image in hour_min_sec.jpg format
+      # Store the image in pic#.jpg format
       cv2.imwrite(str(directory+"/"+t),img)
       count+=1
     except:
       print "Error: Could not read in data. Attempting to reconnect."
       exit(1)
 
-    time.sleep(0.8) # Sleep for almost a second until next frame
+    prev_img = img
+    while True:
+      img = getImg(ip)
+      if (img == prev_img).all():
+        continue
+      else:
+        break
 
   # Write the number of images to meta.txt and close the file
   metafile.write("Total Frames: "+str(count)+"\n")
-  etime = getCurTime()
-  metafile.write("End Time: "+str(etime)+"\n")
+  metafile.write("End Time: "+str(getCurTime())+"\n")
   metafile.close()
-
-def writer(queue):
-  while loop:
-    img = getImg(ips[index][1])
-    try:  
-      queue.put_nowait(img)
-    except:
-      print "Queue is full! Dumping old data."
-      for _ in range(10):
-        queue.get()
-      queue.put(img)
-
-    time.sleep(0.8)
-
-def reader(queue):
-  i = 1
-  while loop:
-    img = queue.get()
-    cv2.imwrite("pic"+str(i)+".jpg",img)
-    i+=1
-    time.sleep(0.8)
 
 ##### Main #####
 parser = argparse.ArgumentParser(description="Choose the operations to perform.")
 parser.add_argument("password", help="Insert database password")
 parser.add_argument("-c","--collect", nargs=1, dest="cname", help="Collect frames")
 parser.add_argument("-s","--system", nargs=1, dest="sname", help="Funnel to the system")
+parser.add_argument("-d","--directory", nargs=1, dest="dir", help="Name of directory")
 
 args = parser.parse_args()
 
@@ -131,17 +118,18 @@ ips = storeIPs(args.password)
 if args.cname:
   index = ipSwitch(args.cname[0])
   signal.signal(signal.SIGINT, signalHandler)   # Edit ctrl-c to end the loop
-  collectData(args.cname[0], ips[index][1])
+  if args.dir:
+    collectData(args.cname[0], ips[index][1], args.dir[0])
+  else:
+    collectData(args.cname[0], ips[index][1], "c"+str(random.randint(100,1000)))
 
 elif args.sname:
   index = ipSwitch(args.sname[0])
-  q = Queue(10)
-
-  p = Process(target=reader, args=(q,))
   signal.signal(signal.SIGINT, signalHandler)   # Edit ctrl-c to end the loop
+  q = Queue(10)
+  p = Process(target=reader, args=(q,))
   p.start()
-
-  writer(q)
+  writer(q, ips[index][1])
   p.join()
 
 else:
