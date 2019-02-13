@@ -1,0 +1,5 @@
+git clone https://github.com/tzutalin/labelImg.git
+sudo apt-get install pyqt4-dev-tools
+sudo pip install lxml
+make qt4py2
+python labelImg.py
