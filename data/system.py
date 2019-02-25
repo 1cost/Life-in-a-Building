@@ -80,7 +80,8 @@ def collectData(loc, ip, directory):
   img = getImg(ip)
   while loop:
     try:
-      t = "pic"+str(count)+".jpg"
+      picnum = str(count).zfill(3)
+      t = "pic"+picnum+".jpg"
       print t
 
       # Store the image in pic#.jpg format
