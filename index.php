@@ -44,11 +44,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="dat.php">Data Management</a>
             </li>
+            <!--
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          -->
           </ul>
         </div>
       </div>
@@ -131,7 +133,7 @@
   </div>
   <br>
   <hr>
- 
+
       <!-- /.row -->
 
       <!-- AVAILABLE FOR EASY EXTENSION -->
@@ -145,17 +147,17 @@
   type: 'line',
   data: {
     labels: [5,10,15,20,25,30],
-    datasets: [{ 
+    datasets: [{
         data: [0,0,10,25,20,19,18,25,24,23,12,21],
         label: "Mac D",
         borderColor: "#3e95cd",
         fill: false
-      }, { 
+      }, {
         data: [2,5,7,1,2,5,6,10,19,20,18,18],
         label: "Barbershop",
         borderColor: "#8e5ea2",
         fill: false
-      }, { 
+      }, {
         data: [10,9,4,5,6,7,8,11,3,5,3,9],
         label: "7th Wing",
         borderColor: "#3cba9f",
