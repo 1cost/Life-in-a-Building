@@ -41,16 +41,16 @@ function buildGraph(data, id, it)
   var x = [];
   for(var i = 0; i < data.length; i++)
   {
-    x.push(data[i]["Count"]);
+    x.push(data[i]["count"]);
   }
   console.log(x);
   it.destroy();
-  
+
   id = new Chart(document.getElementById(id), {
   type: 'line',
   data: {
     labels: [5,10,15,20,25,30],
-    datasets: [{ 
+    datasets: [{
         data: x,
         label: "Mac D",
         borderColor: "#3e95cd",
@@ -75,5 +75,3 @@ function buildGraph(data, id, it)
 });
 
 }
-
-
