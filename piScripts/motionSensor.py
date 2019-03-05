@@ -1,6 +1,7 @@
 from gpiozero import MotionSensor
 import time
 import datetime
+
 pir = MotionSensor(4)
 
 def sendData(pir):
