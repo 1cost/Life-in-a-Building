@@ -1,8 +1,5 @@
-# $ pip install httpclient
-
 # MAKE SURE THE PI FILE RETURNS A STRING WHEN A MOTION IS DETECTED
 
-import piScript
 import motionSensor
 
 prevMotion = "";
