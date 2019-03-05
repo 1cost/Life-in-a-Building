@@ -138,6 +138,25 @@ ass="col-md">
       </div>
     </div>
   </div>
+  <bR />
+  <div class="row">
+    <div class = "col-lg-5 col-lg-offset-2"></div>
+    <!-- Example single danger button -->
+    <div class= "col-lg-4 col-lg-offset 4">
+<div class="btn-group">
+
+  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    MacDonough Hall
+  </button>
+  <div class="dropdown-menu" style="text-align:center;">
+    <a class="dropdown-item" href="#">7th Wing Gym</a>
+    <a class="dropdown-item" href="#">Barbershop</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">All</a>
+  </div>
+</div>
+</div>
+  </div>
     <hr>
 
     <div class='form-group' style='text-align:center;'>
