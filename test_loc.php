@@ -6,6 +6,12 @@
     var cams = ["7th Wing Gym",
                     "MacDonough Gym 1",
                     "Barbershop"];
+    var locMap = {
+      "MacDonough Hall": "macd",
+      "7th Wing Gym": "7",
+      "Barbershop": "barb",
+      "All": "wildcard"
+    };
     </script>
 
     <meta charset="utf-8">
@@ -143,16 +149,26 @@ ass="col-md">
     <div class = "col-lg-5 col-lg-offset-2"></div>
     <!-- Example single danger button -->
     <div class= "col-lg-4 col-lg-offset 4">
+      <script>
+        function modifyTitle(item)
+        {
+          var b = document.getElementById ("dropB");
+          b.textContent = item.textContent;
+          var x = document.getElementById("hid");
+          x.value = locMap[item.textContent];
+        }
+      </script>
 <div class="btn-group">
-
-  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <input type ="hidden" name = "location" id = "hid" value = "macd"/>
+  <button type="button" id="dropB" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name = "location">
     MacDonough Hall
   </button>
   <div class="dropdown-menu" style="text-align:center;">
-    <a class="dropdown-item" href="#">7th Wing Gym</a>
-    <a class="dropdown-item" href="#">Barbershop</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">All</a>
+    <a class="dropdown-item" href="#" onclick="modifyTitle(this);">MacDonough Hall</a>
+    <a class="dropdown-item" href="#" onclick="modifyTitle(this);">7th Wing Gym</a>
+    <a class="dropdown-item" href="#" onclick="modifyTitle(this);">Barbershop</a>
+    <div class="dropdown-divider" onclick="modifyTitle(this);"></div>
+    <a class="dropdown-item" href="#" onclick="modifyTitle(this);">All</a>
   </div>
 </div>
 </div>
