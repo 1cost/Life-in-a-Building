@@ -6,6 +6,12 @@
     var cams = ["7th Wing Gym",
                     "MacDonough Gym 1",
                     "Barbershop"];
+    var locMap = {
+      "MacDonough Hall": "macd",
+      "7th Wing Gym": "7",
+      "Barbershop": "barb",
+      "All": "*"
+    };
     </script>
 
     <meta charset="utf-8">
@@ -13,13 +19,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <script type="text/JavaScript" src ="js/functions.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src ="js/Chart.js/chart.min.js"></script>
     <script src ="js/functions.js"></script>
+    <script src ="datepicker/datepicker.js"></script>
+    <script type="text/javascript" src="timepicker/bootstrap-clockpicker.min.js"></script>
 
     <title>Live feeds</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="datepicker/bootstrap-datepicker.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="timepicker/bootstrap-clockpicker.min.css">
 
     <!-- src: https://thenounproject.com/term/big-brother/38042/ -->
     <link rel="icon" href="imgs/surv_favicon.png">
@@ -68,7 +81,6 @@
     <div class="row"/>
       <div class="col-md">
         <div id="title">
-
         </div>
         <div id="placement">
         </div>
@@ -85,32 +97,82 @@ ass="col-md">
 <hr>
 <div id="placeholder">
   <form method='POST' action='pull.php' onsubmit="return goForm(this,myChart);">
-  	<div class = 'container'>
+  <div class = 'container'>
     <div class='form-group' style='text-align:center;' align="center">
-    	<canvas id ="canv" width = "1000   " height= "500"></canvas>
+        <canvas id ="canv" width = "1000   " height= "500"></canvas>
     </div>
-	</div>
-    <div class='form-group' style='text-align:center;'>
-    	<div class="row" align="center">
-    <div class="col-lg-4 col-lg-offset-4">
-        <div class="input-group">
-            <input type="text" class="form-control" name="start"/>
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Start</button>
-            </span>
-        </div><!-- /input-group -->
-    </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4 col-lg-offset-4">
-        <div class="input-group">
-            <input type="text" class="form-control" name="end"/>
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">End</button>
-            </span>
-        </div><!-- /input-group -->
-    </div><!-- /.col-lg-4 -->
-</div><!-- /.row -->
     </div>
-
+  <div class = "row">
+    <div class = "col-lg-2">
+    </div>
+    <div class = "col-lg-2 col-lg-offset-4"><span class = "label label-primary">Search Start Time: </span></div>
+    <div class = "col-lg-4 col-lg-offset-2">
+      <div class="well span12 main" style="text-align:center;">
+        <input type="text" id="start_date" class="span2 datepicker" placeholder="Date..."
+           name="start_date"> <br>
+      </div>
+    </div>
+    <div class = "col-md-1 col-lg-offset-2">
+      <div class="well span12 main" style="text-align:center;">
+        <div class="input-group clockpicker">
+          <input type="text" class="form-control" value="09:30" name = "start_time">
+          <span class="input-group-addon">
+          <span class="glyphicon glyphicon-time"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-lg-2">
+    </div>
+    <div class = "col-lg-2 col-lg-offset-4"><span class = "label label-primary">Search End Time: </span></div>
+    <div class = "col-lg-4 col-lg-offset-2">
+      <div class="well span12 main" style="text-align:center;">
+        <input type="text" id="end_date" class="span2 datepicker" placeholder="Date..."
+           name="end_date"> <br>
+      </div>
+    </div>
+    <div class = "col-md-1 col-lg-offset-2">
+      <div class="well span12 main" style="text-align:center;">
+        <div class="input-group clockpicker">
+          <input type="text" class="form-control" value="09:30" name ="end_time">
+          <span class="input-group-addon">
+          <span class="glyphicon glyphicon-time"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <bR />
+  <div class="row">
+    <div class = "col-lg-5 col-lg-offset-2"></div>
+    <!-- Example single danger button -->
+    <div class= "col-lg-4 col-lg-offset 4">
+      <script>
+        function modifyTitle(item)
+        {
+          var b = document.getElementById ("dropB");
+          b.textContent = item.textContent;
+          var x = document.getElementById("hid");
+          x.value = locMap[item.textContent];
+        }
+      </script>
+<div class="btn-group">
+  <input type ="hidden" name = "location" id = "hid" value = "macd"/>
+  <button type="button" id="dropB" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name = "location">
+    MacDonough Hall
+  </button>
+  <div class="dropdown-menu" style="text-align:center;">
+    <a class="dropdown-item" href="#" onclick="modifyTitle(this);">MacDonough Hall</a>
+    <a class="dropdown-item" href="#" onclick="modifyTitle(this);">7th Wing Gym</a>
+    <a class="dropdown-item" href="#" onclick="modifyTitle(this);">Barbershop</a>
+    <div class="dropdown-divider" onclick="modifyTitle(this);"></div>
+    <a class="dropdown-item" href="#" onclick="modifyTitle(this);">All</a>
+  </div>
+</div>
+</div>
+  </div>
     <hr>
 
     <div class='form-group' style='text-align:center;'>
@@ -129,12 +191,17 @@ ass="col-md">
         <p class="m-0 text-center text-white">Copyright &copy; Life in a Building 2018-2019</p>
       <!-- /.container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   </div>
 </div>
+<script>
+$('.clockpicker').clockpicker();
+
+$(function(){
+   $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd'
+    });
+});
+</script>
 
   </body>
 

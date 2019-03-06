@@ -15,6 +15,7 @@ function buildForm(formElement, id) {
 }
 
 function goForm(formElement, id) {
+  document.getElementById("err").innerHTML = "";
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -39,8 +40,20 @@ function goForm(formElement, id) {
 function buildGraph(data, id, it)
 {
   var x = [];
+  var lab = []
   for(var i = 0; i < data.length; i++)
   {
+    if(data.length <=5)
+    {
+      lab.push(data[i]["date"]);
+    }
+    else
+    {
+      if(i%2==0)
+      {
+        lab.push(data[i]["date"]);
+      }
+    }
     x.push(data[i]["count"]);
   }
   console.log(x);
@@ -49,18 +62,18 @@ function buildGraph(data, id, it)
   id = new Chart(document.getElementById(id), {
   type: 'line',
   data: {
-    labels: [5,10,15,20,25,30],
+    labels: lab,
     datasets: [{
         data: x,
-        label: "Mac D",
+        label: "Space(s) Selected",
         borderColor: "#3e95cd",
-        fill: false
+        fill: true
       }]
   },
   options: {
     title: {
       display: true,
-      text: 'Trends of # of Persons in Macdonough Hall Over Time'
+      text: 'Trends of # of Persons in Space(s) Over Time'
     },
     layout: {
       padding: {
