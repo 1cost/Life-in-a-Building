@@ -7,7 +7,6 @@ f = open("motion.txt", "a")
 while(True):
     while(True):
 
-        # Need to see what pi outputs first before finishing
         # Assumed getMotion will properly wait until input is received so no waiting required in this script
         motion = motionSensor.sendData(motionSensor.pir)
         if(motion != prevMotion):
