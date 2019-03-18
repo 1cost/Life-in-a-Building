@@ -24,6 +24,7 @@ function goForm(formElement, id) {
        if(dat[0] != -1)
        {
           buildGraph(dat, "canv", id);
+          buildTable(dat, "")
        }
        else
        {
@@ -35,6 +36,24 @@ function goForm(formElement, id) {
   xhttp.open(formElement.method, formElement.action, true);
   xhttp.send(new FormData (formElement));
   return false;
+}
+
+function buildTable(data)
+{
+  var x = [];
+  var build = document.getElementById("err");
+  var d = "<table name = 'myt' id = 'myt'><thead><tr><th>TIME</th><th>COUNT</th><th>LOCATION</th></tr></thead><tbody>";
+  console.log(data);
+  for( var i = 0; i < data.length; i++)
+  {
+    console.log(data[i]);
+    d += "<tr><td>" + data[i]["date"] + "</td><td>" + data[i]["count"] + "</td><td>" + data[i]["location"] + "</td></tr>";
+  }
+  d+= "</tbody></table>";
+  build.innerHTML = d;
+  $(document).ready( function () {
+    $('#myt').DataTable();
+} );
 }
 
 function buildGraph(data, id, it)

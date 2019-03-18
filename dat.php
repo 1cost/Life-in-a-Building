@@ -20,12 +20,14 @@
     <meta name="author" content="">
     <script type="text/JavaScript" src ="js/functions.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script> 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src ="js/Chart.js/chart.min.js"></script>
     <script src ="js/functions.js"></script>
     <script src ="datepicker/datepicker.js"></script>
     <script type="text/javascript" src="timepicker/bootstrap-clockpicker.min.js"></script>
+    <script src="tables/dt.js"></script>
+
 
     <title>Live feeds</title>
 
@@ -33,6 +35,7 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="datepicker/bootstrap-datepicker.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="timepicker/bootstrap-clockpicker.min.css">
+    <link rel="stylesheet" href="tables/dt.css">
 
     <!-- src: https://thenounproject.com/term/big-brother/38042/ -->
     <link rel="icon" href="imgs/surv_favicon.png">
