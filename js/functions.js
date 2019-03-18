@@ -52,7 +52,11 @@ function buildTable(data)
   d+= "</tbody></table>";
   build.innerHTML = d;
   $(document).ready( function () {
-    $('#myt').DataTable();
+    $('#myt').DataTable(
+      {
+        responsive: true
+      }
+    );
 } );
 }
 
