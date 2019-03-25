@@ -20,7 +20,7 @@
     <meta name="author" content="">
     <script type="text/JavaScript" src ="js/functions.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script> 
+    <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src ="js/Chart.js/chart.min.js"></script>
     <script src ="js/functions.js"></script>
@@ -63,11 +63,11 @@
             <li class="nav-item active">
               <a class="nav-link" href="dat.php">Data Management</a>
             </li>
-            <!--
+
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="imgs.php">Live Annotations</a>
             </li>
-          -->
+
           </ul>
         </div>
       </div>
@@ -189,11 +189,7 @@ ass="col-md">
 </div>
 <!-- Placeholder for Resubmit button -->
 <div id="resubmitLoc"></div>
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-        <p class="m-0 text-center text-white">Copyright &copy; Life in a Building 2018-2019</p>
-      <!-- /.container -->
-    </footer>
+
   </div>
 </div>
 <script>
@@ -207,7 +203,11 @@ $(function(){
 </script>
 
   </body>
-
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+      <p class="m-0 text-center text-white">Copyright &copy; Life in a Building 2018-2019</p>
+    <!-- /.container -->
+  </footer>
   <script>
 var ctx = document.getElementById("canv");
 myChart = new Chart(ctx, {
