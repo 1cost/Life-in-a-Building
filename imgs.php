@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <script>
     var cams = ["7th Wing Gym",
@@ -92,13 +91,13 @@
     </div>
     <div class="row">
       <div class="col-lg-4 col-md-offset-2">
-        <img src="imgs/annot/pic0.jpg" width="100%" height="350">
+        <img src="imgs/annot/pic0.jpg" width="100%" height="350" id="macd">
       </div>
       <div class="col-lg-4 col-md-offset-2">
-        <img src="imgs/annot/pic1.jpg" width="100%" height="350">
+        <img src="imgs/annot/pic1.jpg" width="100%" height="350" id="barbershop">
       </div>
       <div class="col-lg-4 col-md-offset-2">
-        <img src="imgs/annot/pic2.jpg" width="100%" height="350">
+        <img src="imgs/annot/pic2.jpg" width="100%" height="350" id="7th">
       </div>
     </div>
   </div>
@@ -120,6 +119,17 @@
         return false;
       }
 
+    setInterval(function(){
+      var seventh = document.getElementById("7th");
+      seventh.src = "imgs/annot/pic2.jpg?rand=" + Math.random();
+
+      var barbershop = document.getElementById("barbershop");
+      barbershop.src = "imgs/annot/pic1.jpg?rand=" + Math.random();
+
+      var macd = document.getElementById("macd");
+      macd.src = "imgs/annot/pic0.jpg?rand=" + Math.random();
+
+    },1000);
     getIP('MacDonough Gym 1', 'frame_one_if')
     getIP('Barbershop', 'frame_two_if');
     getIP('7th Wing Gym', 'frame_three_if')

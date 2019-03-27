@@ -1,6 +1,13 @@
+
 <html>
+
 <?php
-  $file_path = $file_path.basename( $_FILES['file']['name']);
-  move_uploaded_file($_FILES['file']['name'],"/imgs/".$file_path);
+
+  foreach($_POST as $filename => $raw_contents)
+  {
+    file_put_contents("imgs/annot/".$filename.".jpg", $raw_contents);
+    echo "Successfully received $filename";
+  }
+
 ?>
 </html>

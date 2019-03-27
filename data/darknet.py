@@ -1,11 +1,14 @@
 from ctypes import *
 import math
 import random
-import requests
 
 # Import Functions for System
 from ips import *
-from system import *
+from images import *
+from connect import *
+import sys
+import os
+import urllib2, urllib
 
 def sample(probs):
     s = sum(probs)
@@ -49,7 +52,7 @@ class METADATA(Structure):
 
 
 
-lib = CDLL("/home/mids/m192022/Documents/darknet/libdarknet.so", RTLD_GLOBAL)
+lib = CDLL("/home/mids/m195466/darknet/libdarknet.so", RTLD_GLOBAL)
 #lib = CDLL("libdarknet.so", RTLD_GLOBAL)
 lib.network_width.argtypes = [c_void_p]
 lib.network_width.restype = c_int
@@ -161,11 +164,11 @@ def detect(net, meta, image, thresh=.5, hier_thresh=.5, nms=.45, outfile="out"):
 
 if __name__ == "__main__":
 
-    config="/home/mids/m192022/Documents/capstone_data/weights/large_parallel_2000/person_backpack_large.cfg"
-    weight="/home/mids/m192022/Documents/capstone_data/weights/large_parallel_2000/person_backpack_large_2000.weights"
+    config="/home/mids/m195466/capstone/capstone_data/weights/large_parallel_2000/person_backpack_large.cfg"
+    weight="/home/mids/m195466/capstone/capstone_data/weights/large_parallel_2000/person_backpack_large_2000.weights"
 
     net = load_net(config, weight, 0)
-    meta=load_meta("/home/mids/m192022/Documents/darknet/person-backpack.data")
+    meta=load_meta("/home/mids/m195466/capstone/capstone_data/darknet/person-backpack.data")
     password = sys.argv[1]
     ips = storeIPs(password)
 
@@ -177,9 +180,17 @@ if __name__ == "__main__":
       cv2.imwrite(name,img)
       r = detect(net, meta, name)
       print(ips[index][0]+" at "+curtime)
+      loc = ips[index][0]
       #print r
+      # 27_Mar_19_11_20_33
+      insertTime = reconstructTime(curtime)
+      personcount = 0
+      backpackcount = 0
       for obj in r:
-        print(obj[0])
+        if obj[0] == "person":
+            personcount += 1
+        else:
+            backpackcount += 1
         width = int(obj[2][2])
         height = int(obj[2][3])
         top_left_x = int(obj[2][0]) - (width/2)
@@ -190,12 +201,29 @@ if __name__ == "__main__":
         draw_bounding_box(img,obj[0],int(obj[1]),top_left_x,top_left_y,bot_right_x,bot_right_y)
 
       name = "pic"+str(index)+".jpg"
+      scr = "pic"+str(index)
       cv2.imwrite(name,img)
       if index < 2:
         index += 1
       else:
         index = 0
 
-      url = 'http://midn.cs.usna.edu/~m195466/capstone/getimg.php'
-      files = {'media': open(name, 'rb')}
-      requests.post(url, files=files)
+      conversionDictionary = {
+          "MacDonough Gym 1" : "macd",
+          "7th Wing Gym" : "7",
+          "Barbershop" : "barb"
+          }
+
+      if personcount > 0:
+          storeData(password, conversionDictionary[loc], "p", personcount, insertTime)
+      if backpackcount > 0:
+          storeData(password, conversionDictionary[loc], "b", backpackcount, insertTime)
+
+      with open(name, "rb") as f:
+          content = f.read()
+          mydata=[(scr,content)]    #The first is the var name the second is the value
+          mydata=urllib.urlencode(mydata)
+          path='http://midn.cs.usna.edu/~m195466/capstone/getimg.php'    #the url you want to POST to
+          req=urllib2.Request(path, mydata)
+          req.add_header("Content-type", "application/x-www-form-urlencoded")
+          page=urllib2.urlopen(req).read()

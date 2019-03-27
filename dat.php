@@ -12,6 +12,12 @@
       "Barbershop": "barb",
       "All": "*"
     };
+
+    var typeMap = {
+      "Persons" : "p",
+      "Backpacks" : "b",
+      "All": "*"
+    };
     </script>
 
     <meta charset="utf-8">
@@ -148,10 +154,7 @@ ass="col-md">
     </div>
   </div>
   <bR />
-  <div class="row">
-    <div class = "col-lg-5 col-lg-offset-2"></div>
     <!-- Example single danger button -->
-    <div class= "col-lg-4 col-lg-offset 4">
       <script>
         function modifyTitle(item)
         {
@@ -160,9 +163,19 @@ ass="col-md">
           var x = document.getElementById("hid");
           x.value = locMap[item.textContent];
         }
+        function modifyTYPE(item)
+        {
+          var b = document.getElementById ("dropType");
+          b.textContent = item.textContent;
+          console.log(b.textContent);
+          var x = document.getElementById("typehid");
+          x.value = typeMap[item.textContent];
+          console.log(x.value);
+        }
       </script>
-<div class="btn-group">
+  <div class="container" style="text-align:center;">
   <input type ="hidden" name = "location" id = "hid" value = "macd"/>
+  <div class="dropdown">
   <button type="button" id="dropB" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name = "location">
     MacDonough Hall
   </button>
@@ -174,18 +187,28 @@ ass="col-md">
     <a class="dropdown-item" href="#" onclick="modifyTitle(this);">All</a>
   </div>
 </div>
-</div>
+<br>
+  <input type ="hidden" name = "typeid" id = "typehid" value = "p"/>
+  <div class="dropdown">
+  <button type="button" id="dropType" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name = "typed">
+    Person
+  </button>
+  <div class="dropdown-menu" style="text-align:center;">
+    <a class="dropdown-item" href="#" onclick="modifyTYPE(this);">Backpacks</a>
+    <a class="dropdown-item" href="#" onclick="modifyTYPE(this);">Persons</a>
+    <div class="dropdown-divider" onclick="modifyTYPE(this);"></div>
+    <a class="dropdown-item" href="#" onclick="modifyTYPE(this);">All</a>
   </div>
+</div>
     <hr>
-
-    <div class='form-group' style='text-align:center;'>
+<br>
       <button type='submit' class='btn btn-success'>Submit</button>
     </div>
   </form>
 </div>
 
 <div class='container'>
-    <div id='err' style='text-algin:center;'></div>
+    <div id='err' style='text-align:center;'></div>
 </div>
 <!-- Placeholder for Resubmit button -->
 <div id="resubmitLoc"></div>
