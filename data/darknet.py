@@ -1,6 +1,7 @@
 from ctypes import *
 import math
 import random
+import requests
 
 # Import Functions for System
 from ips import *
@@ -46,7 +47,7 @@ class METADATA(Structure):
     _fields_ = [("classes", c_int),
                 ("names", POINTER(c_char_p))]
 
-    
+
 
 lib = CDLL("/home/mids/m192022/Documents/darknet/libdarknet.so", RTLD_GLOBAL)
 #lib = CDLL("libdarknet.so", RTLD_GLOBAL)
@@ -157,7 +158,7 @@ def detect(net, meta, image, thresh=.5, hier_thresh=.5, nms=.45, outfile="out"):
     free_image(im)
     free_detections(dets, num)
     return res
-    
+
 if __name__ == "__main__":
 
     config="/home/mids/m192022/Documents/capstone_data/weights/large_parallel_2000/person_backpack_large.cfg"
@@ -176,7 +177,7 @@ if __name__ == "__main__":
       cv2.imwrite(name,img)
       r = detect(net, meta, name)
       print(ips[index][0]+" at "+curtime)
-      print r
+      #print r
       for obj in r:
         print(obj[0])
         width = int(obj[2][2])
@@ -194,4 +195,7 @@ if __name__ == "__main__":
         index += 1
       else:
         index = 0
-    
+
+      url = 'http://midn.cs.usna.edu/~m195466/capstone/getimg.php'
+      files = {'media': open(name, 'rb')}
+      requests.post(url, files=files)
