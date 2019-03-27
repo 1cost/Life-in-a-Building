@@ -194,7 +194,6 @@ ass="col-md">
 </div>
 <script>
 $('.clockpicker').clockpicker();
-
 $(function(){
    $('.datepicker').datepicker({
       format: 'yyyy-mm-dd'

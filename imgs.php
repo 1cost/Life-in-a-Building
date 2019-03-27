@@ -92,19 +92,18 @@
     </div>
     <div class="row">
       <div class="col-lg-4 col-md-offset-2">
-        <img src="imgs/examples/macd0_pic000.png" width="100%" height="350">
+        <img src="imgs/annot/pic0.jpg" width="100%" height="350">
       </div>
       <div class="col-lg-4 col-md-offset-2">
-        <img src="imgs/examples/barber0_pic000.png" width="100%" height="350">
+        <img src="imgs/annot/pic1.jpg" width="100%" height="350">
       </div>
       <div class="col-lg-4 col-md-offset-2">
-        <img src="imgs/examples/7thwing0_pic000.png" width="100%" height="350">
+        <img src="imgs/annot/pic2.jpg" width="100%" height="350">
       </div>
     </div>
   </div>
 
   <script type="text/javascript">
-
       function getIP(camera, element) {
         var data = new FormData();
         data.append('ipaddr', camera);
@@ -133,5 +132,5 @@
       <p class="m-0 text-center text-white">Copyright &copy; Life in a Building 2018-2019</p>
     <!-- /.container -->
   </footer>
-  
+
 </html>
