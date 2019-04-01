@@ -28,7 +28,6 @@
   </head>
 
   <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -91,11 +90,21 @@
 
       <!-- Page Heading -->
       <h1 class="my-4">Life in a Building
-        <small>Manage Feed</small>
       </h1>
 
       <hr />
 
+      <h1>About the project</h1>
+
+      <p>
+        <a href="https://github.com/1cost/Life-in-a-Building">Project Source Code</a>
+      </p>
+
+      <p>
+        Building Ecosystem Traffic Analyzer (BETA) is a system that will aim to provide insight into patterns of life in designated areas by leveraging analysis of camera footage. This will be accomplished by utilizing Naval Academy footage of various public Midshipman spaces such as: Steerage, Mac D weight room, and the mailroom. BETA will use a pre-trained, user-created model to perform object detection on objects of interest from camera footage. BETA will count the detection of objects in order to characterize traffic flow over time.
+      </p>
+
+      <hr />
       <!-- Project One -->
       <div class="container" style="text-align:center;">
       <div class="row">
@@ -134,53 +143,81 @@
   <br>
   <hr>
 
+  <h1>About the developers</h1>
+  <style>
+  .row {
+    display: flex;
+  }
+
+  .column {
+    flex: 33.33%;
+    padding: 5px;
+  }
+
+  </style>
+
+<hr />
+  <div class="page-wrapper">
+    <div class="row">
+      <div class="column">
+        <img src="imgs/kellyn.jpg" width="60%" height="350" id="macd">
+      </div>
+      <div class="column">
+        <p>
+          <h1>Kellyn Abbanat</h1>
+        </p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="column">
+        <img src="imgs/jake.jpg" width="60%" height="500" id="barbershop">
+      </div>
+      <div class="column">
+        <p>
+          <h1>Jake Gerard</h1>
+        </p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="column">
+        <img src="imgs/cat.jpg" width="50%" height="350" id="7th">
+      </div>
+      <div class="column">
+        <p>
+          <h1>Cat Griswold</h1>
+        </p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="column">
+        <img src="imgs/sean.jpg" width="70%" height="350" id="7th">
+      </div>
+      <div class="column">
+        <p>
+          <h1>Sean Krasovic</h1>
+        </p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="column">
+        <img src="imgs/jon.jpg" width="50%" height="350" id="7th">
+      </div>
+      <div class="column">
+        <p>
+          <h1>Jon Rogers</h1>
+        </p>
+      </div>
+    </div>
+  </div>
+  <hr />
+
+
       <!-- /.row -->
 
-      <!-- AVAILABLE FOR EASY EXTENSION -->
-      <div class="row">
-        <div class="col-md-10" style="display:inline-block">
-            <canvas id="line-chart" width="800" height="450" style="text-align:center;"></canvas>
-        </div>
-      </div>
-          <script type="text/javascript">
-            new Chart(document.getElementById("line-chart"), {
-  type: 'line',
-  data: {
-    labels: [5,10,15,20,25,30],
-    datasets: [{
-        data: [0,0,10,25,20,19,18,25,24,23,12,21],
-        label: "Mac D",
-        borderColor: "#3e95cd",
-        fill: false
-      }, {
-        data: [2,5,7,1,2,5,6,10,19,20,18,18],
-        label: "Barbershop",
-        borderColor: "#8e5ea2",
-        fill: false
-      }, {
-        data: [10,9,4,5,6,7,8,11,3,5,3,9],
-        label: "7th Wing",
-        borderColor: "#3cba9f",
-        fill: false
-      }
-    ]
-  },
-  options: {
-    title: {
-      display: true,
-      text: 'Trends of Persons per Space'
-    },
-    layout: {
-      padding: {
-          left: 200,
-          right: 0,
-          top: 0,
-          bottom: 0
-      }
-    }
-  }
-});
-          </script>
       <!-- /.row -->
 
       <!-- Pagination: Implement when more pages needed (if)

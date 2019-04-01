@@ -82,7 +82,7 @@
     padding: 5px;
   }
 
-  </style>350
+  </style>
 
   <br>
   <div class="container" style = "text-align:center;">
