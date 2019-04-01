@@ -214,10 +214,8 @@ if __name__ == "__main__":
           "Barbershop" : "barb"
           }
 
-      if personcount > 0:
-          storeData(password, conversionDictionary[loc], "p", personcount, insertTime)
-      if backpackcount > 0:
-          storeData(password, conversionDictionary[loc], "b", backpackcount, insertTime)
+      storeData(password, conversionDictionary[loc], "p", personcount, insertTime)
+      storeData(password, conversionDictionary[loc], "b", backpackcount, insertTime)
 
       with open(name, "rb") as f:
           content = f.read()
