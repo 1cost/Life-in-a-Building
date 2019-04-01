@@ -72,32 +72,48 @@
     </nav>
   <!-- End Navigation -->
 
+  <style>
+  .row {
+    display: flex;
+  }
+
+  .column {
+    flex: 33.33%;
+    padding: 5px;
+  }
+
+  </style>350
+
   <br>
   <div class="container" style = "text-align:center;">
     <h1> Live Annotations on Live Feeds </h1>
   </div>
   <hr>
+
+
   <div class="page-wrapper">
     <div class="row">
-      <div class="col-lg-4 col-md-offset-2">
-        <iframe src="" width="100%" height="350" id='frame_one_if'></iframe>
+      <div class="column">
+        <iframe src="" width="100%" height="500" id='frame_one_if'></iframe>
       </div>
-      <div class="col-lg-4 col-md-offset-2">
-        <iframe src="" width="100%" height="350" id='frame_two_if'></iframe>
-      </div>
-      <div class="col-lg-4 col-md-offset-2">
-        <iframe src="" width="100%" height="350" id='frame_three_if'></iframe>
+      <div class="column">
+        <img src="imgs/annot/pic2.jpg" width="75%" height="500" id="macd">
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-4 col-md-offset-2">
-        <img src="imgs/annot/pic0.jpg" width="100%" height="350" id="macd">
+      <div class="column">
+        <iframe src="" width="100%" height="500" id='frame_two_if'></iframe>
       </div>
-      <div class="col-lg-4 col-md-offset-2">
-        <img src="imgs/annot/pic1.jpg" width="100%" height="350" id="barbershop">
+      <div class="column">
+        <img src="imgs/annot/pic1.jpg" width="75%" height="500" id="barbershop">
       </div>
-      <div class="col-lg-4 col-md-offset-2">
-        <img src="imgs/annot/pic2.jpg" width="100%" height="350" id="7th">
+    </div>
+    <div class="row">
+      <div class="column">
+        <iframe src="" width="100%" height="500" id='frame_three_if'></iframe>
+      </div>
+      <div class="column">
+        <img src="imgs/annot/pic0.jpg" width="75%" height="500" id="7th">
       </div>
     </div>
   </div>
