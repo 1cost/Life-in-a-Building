@@ -3,7 +3,6 @@
 import motionSensor
 
 prevMotion = "";
-f = open("motion.txt", "a")
 while(True):
     while(True):
 
@@ -12,5 +11,5 @@ while(True):
         if(motion != prevMotion):
             prevMotion = motion
             break;
-    motion = motion + '\n'
-    f.write(motion)
+    command = "curl http://www.thistle-tech.com/piput.pl?val=" + motion
+    exec(command)
