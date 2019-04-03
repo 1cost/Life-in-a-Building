@@ -97,7 +97,7 @@
         <iframe src="" width="100%" height="100%" id='frame_one_if'></iframe>
       </div>
       <div class="column">
-        <img src="imgs/annot/pic2.jpg" class="img-responsive" width="75%" height="75%" id="macd">
+        <img src="../images/annot/pic2.jpg" class="img-responsive" width="75%" height="75%" id="macd">
       </div>
     </div>
     <div class="row">
@@ -105,7 +105,7 @@
         <iframe src="" width="100%" height="100%" id='frame_two_if'></iframe>
       </div>
       <div class="column">
-        <img src="imgs/annot/pic1.jpg" class="img-responsive" width="75%" height="75%" id="barbershop">
+        <img src="../images/annot/pic1.jpg" class="img-responsive" width="75%" height="75%" id="barbershop">
       </div>
     </div>
     <div class="row">
@@ -113,7 +113,7 @@
         <iframe src="" width="100%" height="100%" id='frame_three_if'></iframe>
       </div>
       <div class="column">
-        <img src="imgs/annot/pic0.jpg" class="img-responsive" width="75%" height="75%" id="7th">
+        <img src="../images/annot/pic0.jpg" class="img-responsive" width="75%" height="75%" id="7th">
       </div>
     </div>
   </div>
