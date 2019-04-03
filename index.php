@@ -160,7 +160,7 @@
   <div class="page-wrapper">
     <div class="row">
       <div class="column">
-        <img src="imgs/kellyn.jpg" width="60%" height="350" id="macd">
+        <img src="imgs/kellyn.jpg" width="70%" height="100%" class="img-responsive" id="macd">
       </div>
       <div class="column">
         <p>
@@ -171,7 +171,7 @@
     <hr />
     <div class="row">
       <div class="column">
-        <img src="imgs/jake.jpg" width="60%" height="500" id="barbershop">
+        <img src="imgs/jake.jpg" width="60%" height="500" class="img-responsive" id="barbershop">
       </div>
       <div class="column">
         <p>
@@ -182,7 +182,7 @@
     <hr />
     <div class="row">
       <div class="column">
-        <img src="imgs/cat.jpg" width="50%" height="350" id="7th">
+        <img src="imgs/cat.jpg" width="70%" height="100%" id="7th">
       </div>
       <div class="column">
         <p>
@@ -193,7 +193,7 @@
     <hr />
     <div class="row">
       <div class="column">
-        <img src="imgs/sean.jpg" width="70%" height="350" id="7th">
+        <img src="imgs/sean.jpg" width="70%" height="100%" id="7th">
       </div>
       <div class="column">
         <p>
@@ -204,7 +204,7 @@
     <hr />
     <div class="row">
       <div class="column">
-        <img src="imgs/jon.jpg" width="50%" height="350" id="7th">
+        <img src="imgs/jon.jpg" width="70%" height="100%" class="img-responsive" id="7th">
       </div>
       <div class="column">
         <p>

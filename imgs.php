@@ -94,26 +94,26 @@
   <div class="page-wrapper">
     <div class="row">
       <div class="column">
-        <iframe src="" width="100%" height="500" id='frame_one_if'></iframe>
+        <iframe src="" width="100%" height="100%" id='frame_one_if'></iframe>
       </div>
       <div class="column">
-        <img src="imgs/annot/pic2.jpg" width="75%" height="500" id="macd">
-      </div>
-    </div>
-    <div class="row">
-      <div class="column">
-        <iframe src="" width="100%" height="500" id='frame_two_if'></iframe>
-      </div>
-      <div class="column">
-        <img src="imgs/annot/pic1.jpg" width="75%" height="500" id="barbershop">
+        <img src="imgs/annot/pic2.jpg" class="img-responsive" width="75%" height="75%" id="macd">
       </div>
     </div>
     <div class="row">
       <div class="column">
-        <iframe src="" width="100%" height="500" id='frame_three_if'></iframe>
+        <iframe src="" width="100%" height="100%" id='frame_two_if'></iframe>
       </div>
       <div class="column">
-        <img src="imgs/annot/pic0.jpg" width="75%" height="500" id="7th">
+        <img src="imgs/annot/pic1.jpg" class="img-responsive" width="75%" height="75%" id="barbershop">
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <iframe src="" width="100%" height="100%" id='frame_three_if'></iframe>
+      </div>
+      <div class="column">
+        <img src="imgs/annot/pic0.jpg" class="img-responsive" width="75%" height="75%" id="7th">
       </div>
     </div>
   </div>
