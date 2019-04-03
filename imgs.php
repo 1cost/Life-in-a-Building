@@ -86,7 +86,7 @@
 
   <br>
   <div class="container" style = "text-align:center;">
-    <h1> Live Annotations on Live Feeds </h1>
+    <h1> Live Display of Annotation Data </h1>
   </div>
   <hr>
 
