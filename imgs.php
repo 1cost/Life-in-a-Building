@@ -137,13 +137,13 @@
 
     setInterval(function(){
       var seventh = document.getElementById("7th");
-      seventh.src = "imgs/annot/pic0.jpg?rand=" + Math.random();
+      seventh.src = "../images/annot/pic0.jpg?rand=" + Math.random();
 
       var barbershop = document.getElementById("barbershop");
-      barbershop.src = "imgs/annot/pic1.jpg?rand=" + Math.random();
+      barbershop.src = "../images/annot/pic1.jpg?rand=" + Math.random();
 
       var macd = document.getElementById("macd");
-      macd.src = "imgs/annot/pic2.jpg?rand=" + Math.random();
+      macd.src = "../images/annot/pic2.jpg?rand=" + Math.random();
 
     },1000);
     getIP('MacDonough Gym 1', 'frame_one_if')
