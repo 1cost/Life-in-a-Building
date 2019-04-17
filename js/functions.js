@@ -15,6 +15,7 @@ function buildForm(formElement, id) {
 }
 
 function goForm(formElement, id) {
+
   document.getElementById("err").innerHTML = "";
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -40,6 +41,11 @@ function goForm(formElement, id) {
 
 function buildTable(data)
 {
+  var locMap = {
+    "macd": "MacDonough Hall",
+    "7": "7th Wing Gym",
+    "barb": "Barbershop"
+  };
   var x = [];
   var build = document.getElementById("err");
   var d = "<table name = 'myt' id = 'myt'><thead><tr><th>TIME</th><th>COUNT</th><th>LOCATION</th><th>OBJECT TYPE</th></tr></thead><tbody>";
@@ -47,7 +53,15 @@ function buildTable(data)
   for( var i = 0; i < data.length; i++)
   {
     console.log(data[i]);
-    d += "<tr><td>" + data[i]["date"] + "</td><td>" + data[i]["count"] + "</td><td>" + data[i]["location"] + "</td><td>" + data[i]["object"] + "</td></tr>";
+    obj = "";
+    if(data[i]["object"]=="p")
+    {
+      obj = "Person";
+    }
+    else {
+      obj = "Backpack";
+    }
+    d += "<tr><td>" + data[i]["date"] + "</td><td>" + data[i]["count"] + "</td><td>" + locMap[data[i]["location"]] + "</td><td>" + obj + "</td></tr>";
   }
   d+= "</tbody></table>";
   build.innerHTML = d;
@@ -88,7 +102,7 @@ function buildGraph(data, id, it)
     labels: lab,
     datasets: [{
         data: x,
-        label: "Space(s) Selected",
+        label: "Object count",
         borderColor: "#3e95cd",
         fill: true
       }]
