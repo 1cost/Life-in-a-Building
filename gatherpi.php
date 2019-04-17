@@ -13,12 +13,14 @@ function parseDATE($date, $db)
 	$query = "INSERT INTO MotionData (date) VALUES (?)";
 	$arg = $year . "-" . $month . "-". $day . " " . $hr . ":" . $min . ":00";
   echo $arg;
-	$args = array_push($arg);
+	$args = array($arg);
 	$stmt = build_query($db, $query, $args);
 }
-
-$xml = file_get_contents("http://www.thistle-tech.com/piget.pl");
-parseDATE($xml, $db);
-sleep(10);
+while(true)
+{
+  $xml = file_get_contents("http://www.thistle-tech.com/piget.pl");
+  parseDATE($xml, $db);
+  sleep(10);
+}
 
 ?>
