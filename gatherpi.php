@@ -12,6 +12,7 @@ function parseDATE($date, $db)
 
 	$query = "INSERT INTO MotionData (date) VALUES (?)";
 	$arg = $year . "-" . $month . "-". $day . " " . $hr . ":" . $min . ":00";
+  echo $arg;
 	$args = array_push($arg);
 	$stmt = build_query($db, $query, $args);
 }

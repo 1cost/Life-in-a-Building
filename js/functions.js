@@ -15,7 +15,6 @@ function buildForm(formElement, id) {
 }
 
 function goForm(formElement, id) {
-
   document.getElementById("err").innerHTML = "";
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {

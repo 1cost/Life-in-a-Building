@@ -9,8 +9,8 @@
   echo "<h5>ERROR: " . mysqli_connect_errno() . ": " . mysqli_connect_error() . " </h5><br>";
   }
   $stmt;
-  $start = $_POST[start_date]." ".$_POST[start_time]."00";
-  $end = $_POST[end_date]." ".$_POST[end_time]."00";
+  $start = $_POST["start_date"]." ".$_POST["start_time"]."00";
+  $end = $_POST["end_date"]." ".$_POST["end_time"]."00";
   $args = array($start, $end);
   $query = "SELECT * FROM CameraData WHERE date >= ? AND date <= ?";
   if($_POST["location"] != "*")

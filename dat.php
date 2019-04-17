@@ -167,10 +167,8 @@ ass="col-md">
         {
           var b = document.getElementById ("dropType");
           b.textContent = item.textContent;
-          console.log(b.textContent);
           var x = document.getElementById("typehid");
           x.value = typeMap[item.textContent];
-          console.log(x.value);
         }
       </script>
   <div class="container" style="text-align:center;">
