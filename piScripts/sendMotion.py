@@ -1,6 +1,7 @@
 # MAKE SURE THE PI FILE RETURNS A STRING WHEN A MOTION IS DETECTED
 
 import motionSensor
+import requests
 
 prevMotion = "";
 while(True):
@@ -11,5 +12,4 @@ while(True):
         if(motion != prevMotion):
             prevMotion = motion
             break;
-    command = "curl http://www.thistle-tech.com/piput.pl?val=" + motion
-    exec(command)
+    result = requests.get("http://www.thistle-tech.com/piput.pl?val=" + motion)    
