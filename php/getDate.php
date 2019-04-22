@@ -1,6 +1,5 @@
 
   <?php
-  if (!defined('WEB_PATH')) { define('WEB_PATH', 'http://midn.cs.usna.edu/~m195466/IT452/Error_Visualization/web/');}
   require_once("../scripts/mysql.inc.php");
   require_once("functions.php");
   $db = new myConnectDB();
@@ -15,10 +14,23 @@
   $build = [];
   if($first < 1 && $second < 1 && $third < 1 && $fourth < 1)
   {
-    $build[] = -1;
+    $build["err"] = -1;
+  }
+  else
+  {
+    $build["err"] = 0;
+  }
+  if(($first+$second+$third+$fourth)==0)
+  {
+    $build["data"] = -1;
+  }
+  else
+  {
+    $build["data"] = grabComparison($first, $second, $third, $fourth, $db);
   }
 
   $build["left"] = array($first,$second,$third,$fourth);
+  $build["DATE"] = $_POST["start_date"];
 
   $first = getMotionSide($_POST["start_date"], "00:00:00", "06:00:00", $db);
   $second = getMotionSide($_POST["start_date"], "06:00:01", "12:00:00", $db);
@@ -26,6 +38,37 @@
   $fourth = getMotionSide($_POST["start_date"], "18:00:01", "23:59:59", $db);
 
   $build["right"] = array($first,$second,$third,$fourth);
+
+  function grabComparison($first, $second, $third, $fourth, $db)
+  {
+    $ret = [];
+    $empirical = timespan_wrapper("00:00:00", "06:00:00", $db);
+    $odds = ($first - $empirical)/100;
+    array_push($ret, $odds);
+    $empirical = timespan_wrapper("06:00:01", "12:00:00", $db);
+    $odds = ($second - $empirical)/100;
+    array_push($ret, $odds);
+    $empirical = timespan_wrapper("12:00:01", "18:00:00", $db);
+    $odds = ($third - $empirical)/100;
+    array_push($ret, $odds);
+    $empirical = timespan_wrapper("18:00:01", "23:59:59", $db);
+    $odds = ($fourth - $empirical)/100;
+    array_push($ret, $odds);
+    return $ret;
+  }
+
+  function timespan_wrapper($start, $finish, $db)
+  {
+    $args = array($start, $finish);
+    $query = "SELECT SUM(count) as sum FROM CameraData WHERE TIME(date) >= ? AND TIME(date) <= ? AND location = 'barb'";
+    $stmt = build_query($db, $query, $args);
+    $resArr = stmt_to_assoc_array($stmt);
+    if($resArr[0]["sum"] =="")
+    {
+      return 0;
+    }
+    return $resArr[0]["sum"];
+  }
 
   function getCameraSide($date, $startT, $endT, $db)
   {

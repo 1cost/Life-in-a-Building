@@ -100,11 +100,11 @@
 <hr>
 
 <div class="container" style = "text-align:center;">
-	<h3>For Specified Day:</h3>
-	00:00:00 -> 06:00:00 <b>43% busier</b> than emperical average.<br>
-	06:00:00 -> 12:00:00 <b>12% busier</b> than emperical average.<br>
-	12:00:00 -> 18:00:00 <b>8% quieter</b> than emperical average.<br>
-	18:00:00 -> 24:00:00 <b>30% busier</b> than emperical average.<br>
+	<h3>For <span id="DATE_INSERT">2019-04-01</span>:</h3>
+	00:00:00 -> 06:00:00 <b id="A">43% busier</b> than emperical average.<br>
+	06:00:00 -> 12:00:00 <b id="B">12% busier</b> than emperical average.<br>
+	12:00:00 -> 18:00:00 <b id="C">8% quieter</b> than emperical average.<br>
+	18:00:00 -> 24:00:00 <b id="D">30% busier</b> than emperical average.<br>
 </div>
 <hr>
 <br>

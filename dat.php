@@ -82,7 +82,7 @@ ass="col-md">
 
 <hr>
 <div id="placeholder">
-  <form method='POST' action='pull.php' onsubmit="return goForm(this,myChart);">
+  <form method='POST' action='php/pull.php' onsubmit="return goForm(this,myChart);">
   <div class = 'container'>
     <div class='form-group' style='text-align:center;' align="center">
         <canvas id ="canv" width = "1000   " height= "500"></canvas>

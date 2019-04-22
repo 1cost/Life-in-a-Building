@@ -45,7 +45,13 @@ function goRadar(formElement, id) {
     if (this.readyState == 4 && this.status == 200) {
        console.log(xhttp.responseText);
        var dat = JSON.parse(xhttp.responseText);
-       buildRadar(dat["left"], dat["right"], "left", "right");
+
+       if(dat["err"] != -1)
+       {
+          buildRadar(dat["left"], dat["right"], "left", "right");
+          updateInfo(dat["DATE"], dat["data"][0], dat["data"][1], dat["data"][2], dat["data"][3]);
+       }
+       
 
     }
   };
@@ -114,6 +120,47 @@ var rightChart = new Chart(document.getElementById(rightID),
     "labels":["0000-0600","0600-1200","1200-1800","1800-2400"],
     "datasets":[{"label":"# Detection","data":rightData,
 "fill":true,"backgroundColor":"rgba(54, 162, 235, 0.2)","borderColor":"rgb(54, 162, 235)","pointBackgroundColor":"rgb(54, 162, 235)","pointBorderColor":"#fff","pointHoverBackgroundColor":"#fff","pointHoverBorderColor":"rgb(54, 162, 235)"}]},"options":{"elements":{"line":{"tension":0,"borderWidth":3}}}});
+}
+
+function updateInfo(date, a, b, c, d)
+{
+  document.getElementById("DATE_INSERT").innerHTML = date;
+  if(a<0)
+  {
+    document.getElementById("A").innerHTML = (-a)+"% quieter";
+  }
+  else
+  {
+    document.getElementById("A").innerHTML = a+"% busier";
+  }
+
+  if(b<0)
+  {
+    document.getElementById("A").innerHTML = b+"% quieter";
+  }
+  else
+  {
+    document.getElementById("A").innerHTML = b+"% busier";
+  }
+
+  if(c<0)
+  {
+    document.getElementById("A").innerHTML = c+"% quieter";
+  }
+  else
+  {
+    document.getElementById("A").innerHTML = c+"% busier";
+  }
+
+  if(d<0)
+  {
+    document.getElementById("A").innerHTML = d+"% quieter";
+  }
+  else
+  {
+    document.getElementById("A").innerHTML = d+"% busier";
+  }
+
 }
 
 function buildGraph(data, id, it)
