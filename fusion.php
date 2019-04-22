@@ -66,7 +66,7 @@
     <div class = "col-lg-4 col-lg-offset-2">
       <div class="well span12 main" style="text-align:center;">
       	
-        <input type="text" id="start_date" class="span2 datepicker" placeholder="Date..."
+        <input type="text" id="start_date" class="span2 datepicker" placeholder="2019-04-01"
            name="start_date"> 
         <br>
       </div>
@@ -94,11 +94,21 @@
     </div>
   </div>
 </div>
-
 <div class='container'>
     <div id='err' style='text-align:center;'></div>
 </div>
 <hr>
+
+<div class="container" style = "text-align:center;">
+	<h3>For Specified Day:</h3>
+	00:00:00 -> 06:00:00 <b>43% busier</b> than emperical average.<br>
+	06:00:00 -> 12:00:00 <b>12% busier</b> than emperical average.<br>
+	12:00:00 -> 18:00:00 <b>8% quieter</b> than emperical average.<br>
+	18:00:00 -> 24:00:00 <b>30% busier</b> than emperical average.<br>
+</div>
+<hr>
+<br>
+
   </body>
   <!-- Footer -->
   <footer class="py-5 bg-dark">
