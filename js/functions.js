@@ -38,6 +38,22 @@ function goForm(formElement, id) {
   return false;
 }
 
+function goRadar(formElement, id) {
+  document.getElementById("err").innerHTML = "";
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       console.log(xhttp.responseText);
+       var dat = JSON.parse(xhttp.responseText);
+       buildRadar(dat["left"], dat["right"], "left", "right");
+
+    }
+  };
+  xhttp.open(formElement.method, formElement.action, true);
+  xhttp.send(new FormData (formElement));
+  return false;
+}
+
 function buildTable(data)
 {
   var locMap = {
@@ -71,6 +87,33 @@ function buildTable(data)
       }
     );
 } );
+}
+
+function buildRadar(leftData, rightData, leftID, rightID)
+{
+var leftChart = new Chart(document.getElementById(leftID),
+{"type":"radar",
+"data":
+  {
+    "labels":["0000-0600","0600-1200","1200-1800","1800-2400"],
+    "datasets":[{"label":"# Mids","data":leftData,
+    "fill":true,
+    "backgroundColor":"rgba(255, 99, 132, 0.2)",
+    "borderColor":"rgb(255, 99, 132)",
+    "pointBackgroundColor":"rgb(255, 99, 132)",
+    "pointBorderColor":"#fff",
+    "pointHoverBackgroundColor":"#fff",
+    "pointHoverBorderColor":"rgb(255, 99, 132)"}]},
+    "options":
+      {"elements":{"line":{"tension":0,"borderWidth":3}}}});
+
+var rightChart = new Chart(document.getElementById(rightID),
+{"type":"radar",
+"data":
+  {
+    "labels":["0000-0600","0600-1200","1200-1800","1800-2400"],
+    "datasets":[{"label":"# Detection","data":rightData,
+"fill":true,"backgroundColor":"rgba(54, 162, 235, 0.2)","borderColor":"rgb(54, 162, 235)","pointBackgroundColor":"rgb(54, 162, 235)","pointBorderColor":"#fff","pointHoverBackgroundColor":"#fff","pointHoverBorderColor":"rgb(54, 162, 235)"}]},"options":{"elements":{"line":{"tension":0,"borderWidth":3}}}});
 }
 
 function buildGraph(data, id, it)
