@@ -9,18 +9,15 @@ function parseDATE($date, $db)
 	$day = substr($date,6,2);
 	$hr = substr($date,8,2);
 	$min = substr($date,10,2);
-
-	$query = "INSERT INTO MotionData (date) VALUES (?)";
-	$arg = $year . "-" . $month . "-". $day . " " . $hr . ":" . $min . ":00";
-  echo $arg;
-	$args = array($arg);
+	$sec = substr($date,12,2);
+	$arg = $year . "-" . $month . "-". $day . " " . $hr . ":" . $min . ":".$sec;
+	$args =array($arg);
+	$query = "INSERT IGNORE INTO Motion (date) VALUES (?)";
 	$stmt = build_query($db, $query, $args);
+	return "Success";
 }
-while(true)
-{
+
   $xml = file_get_contents("http://www.thistle-tech.com/piget.pl");
-  parseDATE($xml, $db);
-  sleep(10);
-}
+  echo parseDATE($xml, $db);
 
 ?>

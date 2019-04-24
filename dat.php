@@ -71,8 +71,7 @@
         <div id="placement">
         </div>
       </div>
-      <div cl￼End
-ass="col-md">
+      <div cl￼ass="col-md">
         <span id="pic"></span>
       </div>
     </div>
@@ -94,14 +93,14 @@ ass="col-md">
     <div class = "col-lg-2 col-lg-offset-4"><span class = "label label-primary">Search Start Time: </span></div>
     <div class = "col-lg-4 col-lg-offset-2">
       <div class="well span12 main" style="text-align:center;">
-        <input type="text" id="start_date" class="span2 datepicker" placeholder="Date..."
+        <input type="text" id="start_date" class="span2 datepicker" placeholder="Enter Date..."
            name="start_date"> <br>
       </div>
     </div>
     <div class = "col-md-1 col-lg-offset-2">
       <div class="well span12 main" style="text-align:center;">
         <div class="input-group clockpicker">
-          <input type="text" class="form-control" value="09:30" name = "start_time">
+          <input type="text" class="form-control" value="08:30" name = "start_time">
           <span class="input-group-addon">
           <span class="glyphicon glyphicon-time"></span>
           </span>
@@ -115,14 +114,14 @@ ass="col-md">
     <div class = "col-lg-2 col-lg-offset-4"><span class = "label label-primary">Search End Time: </span></div>
     <div class = "col-lg-4 col-lg-offset-2">
       <div class="well span12 main" style="text-align:center;">
-        <input type="text" id="end_date" class="span2 datepicker" placeholder="Date..."
+        <input type="text" id="end_date" class="span2 datepicker" placeholder="Enter Date..."
            name="end_date"> <br>
       </div>
     </div>
     <div class = "col-md-1 col-lg-offset-2">
       <div class="well span12 main" style="text-align:center;">
         <div class="input-group clockpicker">
-          <input type="text" class="form-control" value="09:30" name ="end_time">
+          <input type="text" class="form-control" value="22:00" name ="end_time">
           <span class="input-group-addon">
           <span class="glyphicon glyphicon-time"></span>
           </span>

@@ -56,7 +56,7 @@
 	require_once("php/navbar.php");
 ?>
 
-<br><br><br>
+<br>
 <form method='POST' action='php/getDate.php' onsubmit="return goRadar(this,myChart);">
 <div class="container">
   <div class = "row">
@@ -85,10 +85,10 @@
     <div class="col-md-2">
     </div>
     <div class="col-md-4">
-      <canvas id ="left" width = "500" height= "500"></canvas>
+      <canvas id ="left" width = "50%" height= "50%"></canvas>
     </div>
     <div class="col-md-4">
-      <canvas id ="right" width = "500" height= "500"></canvas>
+      <canvas id ="right" width = "50%" height= "50%"></canvas>
     </div>
     <div class="col-md-2">
     </div>
@@ -127,7 +127,7 @@ var myChart = new Chart(document.getElementById("left"),
 "data":
   {
     "labels":["0000-0600","0600-1200","1200-1800","1800-2400"],
-    "datasets":[{"label":"# Mids","data":[65,59,90,81],
+    "datasets":[{"label":"# Mids","data":[16,4832,5636,81],
     "fill":true,
     "backgroundColor":"rgba(255, 99, 132, 0.2)",
     "borderColor":"rgb(255, 99, 132)",
@@ -142,8 +142,18 @@ var lChart = new Chart(document.getElementById("right"),
 "data":
   {
     "labels":["0000-0600","0600-1200","1200-1800","1800-2400"],
-    "datasets":[{"label":"# Detections","data":[30,28,45,40],
-"fill":true,"backgroundColor":"rgba(54, 162, 235, 0.2)","borderColor":"rgb(54, 162, 235)","pointBackgroundColor":"rgb(54, 162, 235)","pointBorderColor":"#fff","pointHoverBackgroundColor":"#fff","pointHoverBorderColor":"rgb(54, 162, 235)"}]},"options":{"elements":{"line":{"tension":0,"borderWidth":3}}}});
+    "datasets":[{"label":"# Detections","data":[2,210,232,40],
+"fill":true,
+"backgroundColor":"rgba(54, 162, 235, 0.2)",
+"borderColor":"rgb(54, 162, 235)",
+"pointBackgroundColor":"rgb(54, 162, 235)",
+"pointBorderColor":"#fff",
+"pointHoverBackgroundColor":"#fff",
+"pointHoverBorderColor":"rgb(54, 162, 235)"}]
+},"options":{
+  "elements":
+  {"line":
+    {"tension":0,"borderWidth":3}}}});
 </script>
 
 

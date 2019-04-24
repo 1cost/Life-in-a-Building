@@ -72,14 +72,14 @@
 
   function getCameraSide($date, $startT, $endT, $db)
   {
-    $start = $date. " ". $startT;  
+    $start = $date. " ". $startT;
     $end = $date. " ".$endT;
     $args = array($start, $end);
     $query = "SELECT SUM(count) as sum FROM CameraData WHERE date >= ? AND date <= ? AND location = 'barb'";
     $stmt = build_query($db, $query, $args);
 
     $resArr = stmt_to_assoc_array($stmt);
-    if($resArr[0]["sum"] == "")
+    if($resArr[0]["sum"] == NULL || $resArr[0]["sum"] == "")
     {
       return 0;
     }
@@ -88,14 +88,14 @@
 
   function getMotionSide($date, $startT, $endT, $db)
   {
-    $start = $date. " ". $startT;  
+    $start = $date. " ". $startT;
     $end = $date. " ".$endT;
     $args = array($start, $end);
-    $query = "SELECT COUNT(*) as sum FROM MotionData WHERE date >= ? AND date <= ?";
+    $query = "SELECT COUNT(*) as sum FROM Motion WHERE date >= ? AND date <= ?";
     $stmt = build_query($db, $query, $args);
 
     $resArr = stmt_to_assoc_array($stmt);
-    if($resArr[0]["sum"] == "")
+    if($resArr[0]["sum"] == NULL || $resArr[0]["sum"] == "")
     {
       return 0;
     }

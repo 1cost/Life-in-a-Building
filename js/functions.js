@@ -21,6 +21,15 @@ function goForm(formElement, id) {
     if (this.readyState == 4 && this.status == 200) {
        console.log(xhttp.responseText);
        var dat = JSON.parse(xhttp.responseText);
+
+       if(dat["check"] == 1)
+       {
+         var el = document.getElementById("err");
+         el.innerHTML="<div class='alert alert-warning' role='alert'><strong>Oh snap!</strong>, date bounds not given, providing data for 2019-04-24.</div>";
+       }
+       else {
+         document.getElementById("err").innerHTML = "";
+       }
        if(dat[0] != -1)
        {
           buildGraph(dat, "canv", id);
@@ -48,11 +57,15 @@ function goRadar(formElement, id) {
 
        if(dat["err"] != -1)
        {
+          document.getElementById("err").innerHTML = "";
           buildRadar(dat["left"], dat["right"], "left", "right");
           updateInfo(dat["DATE"], dat["data"][0], dat["data"][1], dat["data"][2], dat["data"][3]);
        }
-       
-
+       else
+       {
+          var el = document.getElementById("err");
+          el.innerHTML="<div class='alert alert-danger' role='alert'><strong>Oh snap!</strong>, no data for specified range.</div>";
+       }
     }
   };
   xhttp.open(formElement.method, formElement.action, true);
@@ -136,7 +149,7 @@ function updateInfo(date, a, b, c, d)
 
   if(b<0)
   {
-    document.getElementById("A").innerHTML = b+"% quieter";
+    document.getElementById("A").innerHTML = (-b)+"% quieter";
   }
   else
   {
@@ -145,7 +158,7 @@ function updateInfo(date, a, b, c, d)
 
   if(c<0)
   {
-    document.getElementById("A").innerHTML = c+"% quieter";
+    document.getElementById("A").innerHTML = (-c)+"% quieter";
   }
   else
   {
@@ -154,7 +167,7 @@ function updateInfo(date, a, b, c, d)
 
   if(d<0)
   {
-    document.getElementById("A").innerHTML = d+"% quieter";
+    document.getElementById("A").innerHTML = (-d)+"% quieter";
   }
   else
   {

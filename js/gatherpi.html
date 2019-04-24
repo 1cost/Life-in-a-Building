@@ -1,0 +1,29 @@
+<html>
+<script>
+runCollect();
+
+function goCollect() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       console.log(xhttp.responseText);
+       runCollect();
+    }
+  };
+  xhttp.open("GET", "../php/gatherpi.php", true);
+  xhttp.send();
+  return false;
+}
+
+function runCollect()
+{
+  console.log("Run");
+	setTimeout(function(){
+		goCollect();
+	},10000);
+}
+
+
+</script>
+
+</html>
